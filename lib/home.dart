@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({super.key, required this.title});
+  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -13,7 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text(widget.title),
         backgroundColor: YELLOW,
         actions: [
           IconButton(
@@ -21,25 +22,30 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               // Handle search action
             },
+            tooltip: REMINDER,
           ),
-          PopupMenuButton(itemBuilder: (context) {
-            return [
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            tooltip: MORE,
+            itemBuilder: (BuildContext context) => [
               PopupMenuItem(
-                child: Text('Settings'),
-                value: 'settings',
+                value: SETTINGS,
+                child: Text(SETTINGS),
               ),
-              PopupMenuItem(
-                child: Text('Logout'),
-                value: 'logout',
-              ),
-            ];
-          }, onSelected: (value) {
-            if (value == 'settings') {
-              // Handle settings action
-            } else if (value == 'logout') {
-              // Handle logout action
-            }
-          }),
+              // PopupMenuItem(
+              //   value: CREATE_NEW_NOTE,
+              //   child: Text(CREATE_NEW_NOTE),
+              // ),
+              // PopupMenuItem(
+              //   value: NOTES,
+              //   child: Text(NOTES),
+              // ),
+            ],
+            initialValue: "",
+            onSelected: (String item) {
+              // openSittingsScreen();
+            },
+          ),
         ],
       ),
       body: Center(
