@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,7 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Notes'),
-        backgroundColor: Colors.yellow,
+        backgroundColor: YELLOW,
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
@@ -32,8 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 value: 'logout',
               ),
             ];
-          }, 
-          onSelected: (value) {
+          }, onSelected: (value) {
             if (value == 'settings') {
               // Handle settings action
             } else if (value == 'logout') {
