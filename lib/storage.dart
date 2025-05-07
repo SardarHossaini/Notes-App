@@ -25,4 +25,25 @@ class NotesStorage {
     String content = title + "\n" + description + "\n" + lastEdited + "\n";
     return file.writeAsString(content, mode: FileMode.append);
   }
+
+  Future<List<Note>> readNotes() async {
+    try {
+      final file = await _localFile;
+      String contents = await file.readAsString();
+      List<String> lines = contents.split("\n");
+      List<Note> notes = [];
+
+      for (int i = 0; i < lines.length - 1; i += 3) {
+        String title = lines[i];
+        String description = lines[i + 1];
+        String lastEdited = lines[i + 2];
+        Note note =
+            Note(title, description, DateTime.parse(lastEdited), -1, i ~/ 3);
+        notes.add(note);
+      }
+      return notes;
+    } catch (e) {
+      return [];
+    }
+  }
 }
