@@ -59,6 +59,40 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
           ),
         ],
       ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              width: 650,
+              child: TextField(
+                controller: titleEditingController,
+                maxLines: 1,
+                decoration: InputDecoration(
+                  hintText: "Title",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 650,
+              child: TextField(
+                controller: descriptionEditingController,
+                maxLines: NUMBER_OF_LINE_FOR_NOTE,
+                decoration: InputDecoration(
+                  hintText: "Description",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

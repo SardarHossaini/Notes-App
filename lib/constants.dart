@@ -8,6 +8,8 @@ const CREATE_NEW_NOTE = "Create new note";
 const NOTES = "Notes";
 const SAVE = 'Save';
 const DELETE = "Delete";
+const NEW_NOTE_TITLE = "New note title";
+const NEW_NOTE_BODY = "New note body";
 
 // colors
 const BLACK = Colors.black;
