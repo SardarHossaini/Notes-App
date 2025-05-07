@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/edit.dart';
 import 'package:notes_app/home.dart';
-import 'note.dart';
+import 'package:notes_app/storage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(storage: NotesStorage()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.storage});
+  final NotesStorage storage;
 
   // This widget is the root of your application.
   @override
@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: EditNoteScreen(noteIndex: 0, lineIndex: -1),
-      home: const MyHomePage(
+      home: MyHomePage(
         title: "Note",
+        storage: storage,
       ),
     );
   }

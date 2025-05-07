@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/edit.dart';
 import 'package:notes_app/note.dart';
 import 'constants.dart';
-import 'edit.dart';
+
 import 'storage.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -89,7 +89,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 leading: Icon(Icons.search),
               ),
-            )
+            ),
+            Expanded(
+                child: ListView.separated(
+                    itemCount: notes.length,
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      final item = notes[index];
+                      return ListTile(
+                        title: item.buildTitle(context),
+                        subtitle: item.buildSubtitle(context),
+                        trailing: item.buildButton(context),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider();
+                    }))
           ],
         ),
       ),
@@ -113,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             builder: (context) => EditNoteScreen(
                   noteIndex: -1,
                   lineIndex: 0,
+                  storage: widget.storage,
                   // lineIndex: notes.length * NUMBER_OF_LINE_FOR_NOTE
                 )));
     rebuild();

@@ -1,16 +1,18 @@
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
+import 'package:notes_app/storage.dart';
 
 import 'constants.dart';
 import 'note.dart';
 
 class EditNoteScreen extends StatefulWidget {
-  const EditNoteScreen({
-    super.key,
-    required this.noteIndex,
-    required this.lineIndex,
-  });
+  const EditNoteScreen(
+      {super.key,
+      required this.noteIndex,
+      required this.lineIndex,
+      required this.storage});
+  final NotesStorage storage;
   final int noteIndex;
   final int lineIndex;
   @override
@@ -39,16 +41,16 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
     String lastEditedDate = DateTime.now().toString();
     index = widget.noteIndex;
     if (index == -1) {
-      await widget.storage.write(titleEditingController.text,
+      await widget.storage.writeNote(titleEditingController.text,
           descriptionEditingController.text, lastEditedDate);
       // Add the note to the list of notes
     }
-    List<Note> notes = widget.storage.readNotes();
+    List<Note> notes = await widget.storage.readNotes();
     notes.forEach((element) => print(element.title +
         " " +
         element.body +
         " " +
-        element.dateTime.toString()));
+        element.lastEdited.toString()));
     // Update the note in the list of notes
   }
 
