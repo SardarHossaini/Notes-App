@@ -9,7 +9,7 @@ const NOTES = "Notes";
 const SAVE = 'Save';
 const DELETE = "Delete";
 const NEW_NOTE_TITLE = "New note title";
-const NEW_NOTE_BODY = "New note body";
+const NEW_NOTE_BODY = "Add some body text to your note";
 
 // colors
 const BLACK = Colors.black;

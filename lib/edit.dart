@@ -70,6 +70,10 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
               child: TextField(
                 controller: titleEditingController,
                 maxLines: 1,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
                 decoration: InputDecoration(
                   hintText: "Title",
                   border: OutlineInputBorder(),
@@ -82,6 +86,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
             SizedBox(
               width: 650,
               child: TextField(
+                keyboardType: TextInputType.multiline,
                 controller: descriptionEditingController,
                 maxLines: NUMBER_OF_LINE_FOR_NOTE,
                 decoration: InputDecoration(

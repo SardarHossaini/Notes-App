@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/edit.dart';
+import 'package:notes_app/note.dart';
 import 'constants.dart';
+import 'edit.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -71,11 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         tooltip: CREATE_NEW_NOTE,
-        onPressed: () {},
+        onPressed: () {
+          createNewNote();
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
       ),
     );
+  }
+
+  Future<void> createNewNote() async {
+    await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EditNoteScreen(
+                  noteIndex: -1,
+                  lineIndex: 0,
+                  // lineIndex: notes.length * NUMBER_OF_LINE_FOR_NOTE
+                )));
   }
 }
