@@ -49,12 +49,32 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Center(
-        child: Text('Hello World!'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              width: 750,
+              child: SearchBar(
+                hintText: "Search",
+                onChanged: (value) {
+                  // Handle search action
+                },
+                leading: Icon(Icons.search),
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
         child: Icon(Icons.add),
+        tooltip: CREATE_NEW_NOTE,
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
       ),
     );
   }
