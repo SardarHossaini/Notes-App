@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -31,6 +33,23 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
       titleEditingController.text = NEW_NOTE_TITLE;
       descriptionEditingController.text = NEW_NOTE_BODY;
     }
+  }
+
+  void saveNote() async {
+    String lastEditedDate = DateTime.now().toString();
+    index = widget.noteIndex;
+    if (index == -1) {
+      await widget.storage.write(titleEditingController.text,
+          descriptionEditingController.text, lastEditedDate);
+      // Add the note to the list of notes
+    }
+    List<Note> notes = widget.storage.readNotes();
+    notes.forEach((element) => print(element.title +
+        " " +
+        element.body +
+        " " +
+        element.dateTime.toString()));
+    // Update the note in the list of notes
   }
 
   @override
