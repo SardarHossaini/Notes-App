@@ -68,7 +68,10 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: () {},
+            onPressed: () {
+              saveNote();
+              Navigator.pop(context);
+            },
             tooltip: SAVE,
           ),
           IconButton(

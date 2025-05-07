@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/edit.dart';
 import 'package:notes_app/home.dart';
+import 'note.dart';
 
 void main() {
   runApp(const MyApp());

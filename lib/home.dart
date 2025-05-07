@@ -3,16 +3,38 @@ import 'package:notes_app/edit.dart';
 import 'package:notes_app/note.dart';
 import 'constants.dart';
 import 'edit.dart';
+import 'storage.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.storage});
   final String title;
+  final NotesStorage storage;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Note> notes = [];
+  @override
+  void initState() {
+    super.initState();
+    initializeNotesList();
+  }
+
+  void rebuild() {
+    setState(() {
+      initializeNotesList();
+    });
+  }
+
+  Future<void> initializeNotesList() async {
+    List<Note> notesFromFile = await widget.storage.readNotes();
+    setState(() {
+      notes = notesFromFile;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,5 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   lineIndex: 0,
                   // lineIndex: notes.length * NUMBER_OF_LINE_FOR_NOTE
                 )));
+    rebuild();
   }
 }
